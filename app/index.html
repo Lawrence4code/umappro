@@ -8,29 +8,62 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <title> Document </title>
+  <!-- Font Awesome JS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+  <title> Neighbourhood Map </title>
 </head>
 
 <body>
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar" class="active">
+      <div class="sidebar-header">
+        <h3 class="app-title"> Neighbourhood Map </h3>
+      </div>
+      <input class="search bg-light" data-bind="textInput: filterOptions, valueUpdate: 'afterkeydown'" placeholder="Search Location">
+      <ul class="list-unstyled components " data-bind="foreach: locationsSearch">
+        <li>
+          <a href="#homeSubmenu" aria-expanded="false" data-bind="text: title, click: $parent.popAndBounce">Home</a>
+        </li>
+      </ul>
+      <div class="sidebar-attribution"> Powered by:
+        <img src="images/FOURSQUARE.png" alt=""> </div>
+    </nav>
+    <button type="button" id="sidebarCollapse" class="btn btn-info btn-primary-outline">
+      <i class="fas fa-th fa-2x"></i>
+    </button>
+    <!-- Map Content  -->
+    <div id="map" class="map-area">
 
-  <!-- BootStrap code -->
-
-  <div id="map"></div>
-  <!-- BootStrap code -->
-
-
+    </div>
+  </div>
   <!-- KnockoutJS CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
   <!-- JQuery CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
   <!-- BootStrap CDN -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
+  <script src="js/data.js"></script>
   <script src="js/script.js"></script>
   <!-- Reference: https://developers.google.com/maps/documentation/javascript/tutorial -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVJ-qYhKQ2Z_4VCqJBvN4Fb1l8oL2fB3c&callback=initMap" async
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVJ-qYhKQ2Z_4VCqJBvN4Fb1l8oL2fB3c&callback=appInit" async
     defer></script>
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+      });
+    });
   </script>
 </body>
 
